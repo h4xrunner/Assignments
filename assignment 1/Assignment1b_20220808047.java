@@ -1,3 +1,6 @@
+//Author İbrahim Gül
+//Date 26/09/2024
+
 import java.util.Scanner;
 
 class ATM_20220808047{
