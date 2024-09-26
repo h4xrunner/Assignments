@@ -17,7 +17,6 @@ class ATM_20220808047{
         switch (option) {
             case 1:
                 System.out.println("The current balance is: "+ balance);
-                System.out.println("Have a nice day.");
                 break;
             case 2:
             System.out.print("Please enter the amount to withdraw:");
