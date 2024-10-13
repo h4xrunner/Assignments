@@ -1,5 +1,6 @@
 //Author: İbrahim Gül
 //date:   26.09.2024
+//version 2024.2
 public class Assignment1a_20220808047 {
 public static void main(String[] args){
 

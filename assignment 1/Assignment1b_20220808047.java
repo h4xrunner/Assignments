@@ -1,9 +1,10 @@
 //Author İbrahim Gül
 //Date 26/09/2024
+//Version 2024.1
 
 import java.util.Scanner;
 
-class ATM_20220808047{
+class Assignment1b_20220808047{
     
     
     public static void main(String[] args) {
