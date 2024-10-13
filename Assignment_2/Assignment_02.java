@@ -19,9 +19,9 @@ public class Assignment_02{
         surname =surname.toUpperCase();
         char option;//created out of do/while cause resetting problem
         Random random = new Random();
-        int electricity = random.nextInt()*100+1;
-        int water = random.nextInt()*100+1;
-        int internet = random.nextInt()*100+1;
+        int electricity = random.nextInt(100)*+1;
+        int water = random.nextInt(100)*+1;
+        int internet = random.nextInt(100)*+1;
         do{
         System.out.println("Hello "+ name+" "+surname);
         System.out.println("What would you like to do today? ");
@@ -65,7 +65,7 @@ public class Assignment_02{
                     case 1:
                         System.out.println("Your Electricity bill is "+electricity);
                         if(balance<electricity){
-                            System.out.print("You don't have sufficent funds to pay this bill");
+                            System.out.println("You don't have sufficent funds to pay this bill");
                         }else{
                             System.out.print("Do you wish to pay this bill now (Y/N)?");
                             char billSelection = opt.next().charAt(0);
