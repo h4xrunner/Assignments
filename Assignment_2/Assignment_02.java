@@ -59,7 +59,7 @@ public class Assignment_02{
                 }
                 break;
                 case 'P'://THE BIGGEST CASE//////////////////////////////////////////////////7
-                System.out.println("Which of the following bills would you like to pay?\n1 - Electricity\n2 - Water\n3 - Internet\nPlease enter your selection >>");
+                System.out.print("Which of the following bills would you like to pay?\n1 - Electricity\n2 - Water\n3 - Internet\nPlease enter your selection >>");
                 int optionBill = opt.nextInt();
                 switch (optionBill) {
                     case 1:
