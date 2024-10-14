@@ -14,9 +14,13 @@ public class Assignment_02{
         
         System.out.print("Please enter your surname >>");
         surname = opt.nextLine();
-        while(balance<0){
-            System.out.print("Please enter your starting balance >>");
+
+        System.out.print("Please enter your starting balance >>");//balance error message
         balance = opt.nextInt();
+        while(balance<0){
+            System.out.println("ERROR: Invalid balance");
+            System.out.print("Please enter your starting balance >>");
+            balance = opt.nextInt();
         }
         
         name = name.substring(0,1).toUpperCase()+name.substring(1,name.length()).toLowerCase();
@@ -59,9 +63,8 @@ public class Assignment_02{
                 }else{
                     balance+= depositAmount;
                     System.out.println("The current balance is: "+ balance+ "\nHave a nice day.");
-    
-                    System.out.print("Please enter your starting balance >>");
-                    balance = opt.nextInt();    }
+                }
+
                 break;
                 case 'P'://THE BIGGEST CASE//////////////////////////////////////////////////7
                 System.out.print("Which of the following bills would you like to pay?\n1 - Electricity\n2 - Water\n3 - Internet\nPlease enter your selection >>");
