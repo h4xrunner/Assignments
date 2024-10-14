@@ -1,21 +1,25 @@
 import java.util.Random;
 import java.util.Scanner;
 public class Assignment_02{
-    static String name;
-    static String surname;
-    static int balance;
+    
     public static void main(String[] args) {
+     String name;
+     String surname;
+     int balance=-1;
         @SuppressWarnings("resource")
         Scanner opt = new Scanner(System.in);
         System.out.print("Please enter your first name >>");
         name = opt.nextLine();
         
+        
         System.out.print("Please enter your surname >>");
         surname = opt.nextLine();
-
-        System.out.print("Please enter your starting balance >>");
+        while(balance<0){
+            System.out.print("Please enter your starting balance >>");
         balance = opt.nextInt();
-        name = name.substring(0,1).toUpperCase()+name.substring(1,name.length());
+        }
+        
+        name = name.substring(0,1).toUpperCase()+name.substring(1,name.length()).toLowerCase();
         surname =surname.toUpperCase();
         char option;//created out of do/while cause resetting problem
         Random random = new Random();
@@ -56,7 +60,8 @@ public class Assignment_02{
                     balance+= depositAmount;
                     System.out.println("The current balance is: "+ balance+ "\nHave a nice day.");
     
-                }
+                    System.out.print("Please enter your starting balance >>");
+                    balance = opt.nextInt();    }
                 break;
                 case 'P'://THE BIGGEST CASE//////////////////////////////////////////////////7
                 System.out.print("Which of the following bills would you like to pay?\n1 - Electricity\n2 - Water\n3 - Internet\nPlease enter your selection >>");
