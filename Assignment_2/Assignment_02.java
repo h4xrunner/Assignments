@@ -2,10 +2,11 @@ import java.util.Random;
 import java.util.Scanner;
 public class Assignment_02{
     
+    @SuppressWarnings("unused")
     public static void main(String[] args) {
      String name;
      String surname;
-     int balance=-1;
+     double balance=-1;
         @SuppressWarnings("resource")
         Scanner opt = new Scanner(System.in);
         System.out.print("Please enter your first name >>");
@@ -16,11 +17,11 @@ public class Assignment_02{
         surname = opt.nextLine();
 
         System.out.print("Please enter your starting balance >>");//balance error message
-        balance = opt.nextInt();
+        balance = opt.nextDouble();
         while(balance<0){
             System.out.println("ERROR: Invalid balance");
             System.out.print("Please enter your starting balance >>");
-            balance = opt.nextInt();
+            balance = opt.nextDouble();
         }
         
         name = name.substring(0,1).toUpperCase()+name.substring(1,name.length()).toLowerCase();
@@ -30,6 +31,18 @@ public class Assignment_02{
         int electricity = random.nextInt(100)*+1;
         int water = random.nextInt(100)*+1;
         int internet = random.nextInt(100)*+1;
+        int ikiyuz=0;
+        int yuz=0;
+        int elli=0;
+        int yirmi=0;
+        int on=0;
+        int bes=0;
+        int bir=0;
+        int ellikrs=0;
+        int yirmibeskrs=0;
+        int onkrs=0;
+        int beskrs=0;
+        int birkrs=0;
         do{
         System.out.println("Hello "+ name+" "+surname);
         System.out.println("What would you like to do today? ");
@@ -47,9 +60,61 @@ public class Assignment_02{
                     break;
                 case 'W':
                 System.out.print("Please enter the amount to withdraw:");
-                withdrawAmount = opt.nextInt();
+                withdrawAmount = opt.nextDouble();
+
                 if(withdrawAmount>=0&&withdrawAmount<=balance){
                     balance-=withdrawAmount;
+                    
+                    ikiyuz =(int) (withdrawAmount/200);
+                    withdrawAmount %=200;
+                    
+                    yuz = (int) (withdrawAmount/100);
+                    withdrawAmount %= 100;
+                    
+                    elli = (int) (withdrawAmount/50);
+
+                    yirmi = (int) (withdrawAmount/20);
+                    withdrawAmount %=20;
+
+                    on = (int) (withdrawAmount/10);
+                    withdrawAmount %=10;
+
+                    bes = (int) (withdrawAmount/5);
+                    withdrawAmount %=5;
+
+                    bir = (int) (withdrawAmount/1);
+                    withdrawAmount %= 1;
+
+                    ellikrs = (int) (withdrawAmount/0.5);
+                    withdrawAmount %=0.5;
+
+                    yirmibeskrs = (int) (withdrawAmount/0.25);
+                    withdrawAmount %= 0.25;
+
+                    onkrs = (int) (withdrawAmount/0.1);
+                    withdrawAmount %=0.1;
+
+                    beskrs = (int) (withdrawAmount/0.05);
+                    withdrawAmount %=0.05;
+
+                    birkrs = (int) (withdrawAmount/0.01);
+                    withdrawAmount %=0.01;
+                    if(ikiyuz > 0) System.out.println(ikiyuz + " - 200TL");
+                    if(yuz > 0) System.out.println(yuz + " - 100TL");
+                    if(elli > 0) System.out.println(elli + " - 50TL");
+                    if(yirmi > 0) System.out.println(yirmi + " - 20TL");
+                    if(on > 0) System.out.println(on + " - 10TL");
+                    if(bes > 0) System.out.println(bes + " - 5TL");
+                    if(bir > 0) System.out.println(bir + " - 1TL");
+                    if(ellikrs > 0) System.out.println(ellikrs + " - 50 kuruş");
+                    if(yirmibeskrs > 0) System.out.println(yirmibeskrs + " - 25 kuruş");
+                    if(onkrs > 0) System.out.println(onkrs + " - 10 kuruş");
+                    if(beskrs > 0) System.out.println(beskrs + " - 5 kuruş");
+                    if(birkrs > 0) System.out.println(birkrs + " - 1 kuruş");
+
+
+                    System.out.println("You will receive the following:");
+
                     System.out.println("The current balance is: "+ balance+ "\nHave a nice day");
                 }else{
                     System.out.println("ERROR: Invalid withdraw amount.\n\n");
@@ -57,7 +122,7 @@ public class Assignment_02{
                 break;
                 case 'D':
                 System.out.print("Please enter the amount to deposit: ");
-                depositAmount=opt.nextInt();
+                depositAmount=opt.nextDouble();
                 if(depositAmount<0){
                     System.out.println("ERROR: Invalid deposit amount.\n\n");
                 }else{
