@@ -72,6 +72,7 @@ public class Assignment_02{
                     withdrawAmount %= 100;
                     
                     elli = (int) (withdrawAmount/50);
+                    withdrawAmount %=50;
 
                     yirmi = (int) (withdrawAmount/20);
                     withdrawAmount %=20;
@@ -218,8 +219,5 @@ public class Assignment_02{
                     break;
             }
         }while(option!='Q'&&option != '5');
-        
-
     }
-
 }
