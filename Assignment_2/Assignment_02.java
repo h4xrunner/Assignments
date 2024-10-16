@@ -100,18 +100,18 @@ public class Assignment_02{
 
                     birkrs = (int) (withdrawAmount/0.01);
                     withdrawAmount %=0.01;
-                    if(ikiyuz > 0) System.out.println(ikiyuz + " - 200TL");
-                    if(yuz > 0) System.out.println(yuz + " - 100TL");
-                    if(elli > 0) System.out.println(elli + " - 50TL");
-                    if(yirmi > 0) System.out.println(yirmi + " - 20TL");
-                    if(on > 0) System.out.println(on + " - 10TL");
-                    if(bes > 0) System.out.println(bes + " - 5TL");
-                    if(bir > 0) System.out.println(bir + " - 1TL");
-                    if(ellikrs > 0) System.out.println(ellikrs + " - 50 kuruş");
-                    if(yirmibeskrs > 0) System.out.println(yirmibeskrs + " - 25 kuruş");
-                    if(onkrs > 0) System.out.println(onkrs + " - 10 kuruş");
-                    if(beskrs > 0) System.out.println(beskrs + " - 5 kuruş");
-                    if(birkrs > 0) System.out.println(birkrs + " - 1 kuruş");
+                    if(ikiyuz > 0) System.out.println(ikiyuz + " - 200");
+                    if(yuz > 0) System.out.println(yuz + " - 100");
+                    if(elli > 0) System.out.println(elli + " - 50");
+                    if(yirmi > 0) System.out.println(yirmi + " - 20");
+                    if(on > 0) System.out.println(on + " - 10");
+                    if(bes > 0) System.out.println(bes + " - 5");
+                    if(bir > 0) System.out.println(bir + " - 1");
+                    if(ellikrs > 0) System.out.println(ellikrs + " - 0.5");
+                    if(yirmibeskrs > 0) System.out.println(yirmibeskrs + " - 0.25");
+                    if(onkrs > 0) System.out.println(onkrs + " - 0.1");
+                    if(beskrs > 0) System.out.println(beskrs + " - 0.05");
+                    if(birkrs > 0) System.out.println(birkrs + " - 0.01");
 
 
                     System.out.println("You will receive the following:");
