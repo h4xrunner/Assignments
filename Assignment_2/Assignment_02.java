@@ -23,8 +23,12 @@ public class Assignment_02{
             System.out.print("Please enter your starting balance >>");
             balance = opt.nextDouble();
         }
+        String[] names = name.split(" ",2);
+        for (int i=0;i<names.length;i++) {
+            names[i] = names[i].substring(0,1).toUpperCase()+names[i].substring(1).toLowerCase();
+        }
         
-        name = name.substring(0,1).toUpperCase()+name.substring(1,name.length()).toLowerCase();
+        //name = name.substring(0,1).toUpperCase()+name.substring(1,name.length()).toLowerCase();
         surname =surname.toUpperCase();
         char option;//created out of do/while cause resetting problem
         Random random = new Random();
@@ -44,7 +48,11 @@ public class Assignment_02{
         int beskrs=0;
         int birkrs=0;
         do{
-        System.out.println("Hello "+ name+" "+surname);
+        System.out.print("Hello ");
+        for (String a : names) {
+            System.out.print(a+" ");
+        }
+        System.out.println(" "+ surname);
         System.out.println("What would you like to do today? ");
         System.out.print("B to see your (B)alance \nW to (W)ithdraw cash\nD to (D)eposit cash\nP to (P)ay a bill\nQ to (Q)uit\nPlease enter your selection: ");
         
