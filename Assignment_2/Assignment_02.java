@@ -1,3 +1,6 @@
+//Author: İbrahim Gül
+//date:   21.10.2024
+//version 2.7
 import java.util.Random;
 import java.util.Scanner;
 public class Assignment_02{
@@ -35,18 +38,18 @@ public class Assignment_02{
         int electricity = random.nextInt(100)*+1;
         int water = random.nextInt(100)*+1;
         int internet = random.nextInt(100)*+1;
-        int ikiyuz=0;
-        int yuz=0;
-        int elli=0;
-        int yirmi=0;
-        int on=0;
-        int bes=0;
-        int bir=0;
-        int ellikrs=0;
-        int yirmibeskrs=0;
-        int onkrs=0;
-        int beskrs=0;
-        int birkrs=0;
+        double ikiyuz=0;
+        double yuz=0;
+        double elli=0;
+        double yirmi=0;
+        double on=0;
+        double bes=0;
+        double bir=0;
+        double ellikrs=0;
+        double yirmibeskrs=0;
+        double onkrs=0;
+        double beskrs=0;
+        double birkrs=0;
         do{
         System.out.print("Hello ");
         for (String a : names) {
