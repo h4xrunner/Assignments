@@ -3,7 +3,7 @@
 //version 2.7
 import java.util.Random;
 import java.util.Scanner;
-public class Assignment_02{
+public class Assignment_20220808047{
     
     @SuppressWarnings("unused")
     public static void main(String[] args) {
