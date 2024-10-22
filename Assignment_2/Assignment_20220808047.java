@@ -35,9 +35,9 @@ public class Assignment_20220808047{
         surname =surname.toUpperCase();
         char option;//created out of do/while cause resetting problem
         Random random = new Random();
-        int electricity = random.nextInt(100)*+1;
-        int water = random.nextInt(100)*+1;
-        int internet = random.nextInt(100)*+1;
+        double electricity = random.nextDouble(100)*+1;
+        double water = random.nextDouble(100)*+1;
+        double internet = random.nextDouble(100)*+1;
         int ikiyuz=0;
         int yuz=0;
         int elli=0;
@@ -62,6 +62,7 @@ public class Assignment_20220808047{
         double withdrawAmount;
         double depositAmount;
         option= opt.next().charAt(0);//got CHAR
+        option= Character.toUpperCase(option);
         
         
             switch (option) {
@@ -76,7 +77,7 @@ public class Assignment_20220808047{
                 if(withdrawAmount>=0 && withdrawAmount<=balance){
                     balance -= withdrawAmount;
             
-                    // Yuvarlama işlemi (2 basamak)
+                    // 2 digit up
                     balance = Math.round(balance * 100.0) / 100.0;
                     withdrawAmount = Math.round(withdrawAmount * 100.0) / 100.0;
             
@@ -126,7 +127,7 @@ public class Assignment_20220808047{
                     if(yirmibeskrs > 0) System.out.println(yirmibeskrs + " - 0.25");
                     if(onkrs > 0) System.out.println(onkrs + " - 0.1");
                     if(beskrs > 0) System.out.println(beskrs + " - 0.05");
-                    if(birkrs > 0) System.out.println(birkrs +1+ " - 0.01");//LOOK 
+                    if(birkrs > 0) System.out.println(birkrs + " - 0.01");
 
 
                     System.out.println("You will receive the following:");
@@ -158,6 +159,7 @@ public class Assignment_20220808047{
                         }else{
                             System.out.print("Do you wish to pay this bill now (Y/N)?");
                             char billSelection = opt.next().charAt(0);
+                            billSelection= Character.toUpperCase(billSelection);
                             switch (billSelection) {
                                 case 'Y':
                                 balance -=electricity;
@@ -170,7 +172,7 @@ public class Assignment_20220808047{
                                 break;
                                 default:
                                 System.out.println("Invalid selection");
-                                    break;
+                                    break;  
                             }
                         }
                         break;
