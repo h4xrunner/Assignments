@@ -38,18 +38,18 @@ public class Assignment_20220808047{
         int electricity = random.nextInt(100)*+1;
         int water = random.nextInt(100)*+1;
         int internet = random.nextInt(100)*+1;
-        double ikiyuz=0;
-        double yuz=0;
-        double elli=0;
-        double yirmi=0;
-        double on=0;
-        double bes=0;
-        double bir=0;
-        double ellikrs=0;
-        double yirmibeskrs=0;
-        double onkrs=0;
-        double beskrs=0;
-        double birkrs=0;
+        int ikiyuz=0;
+        int yuz=0;
+        int elli=0;
+        int yirmi=0;
+        int on=0;
+        int bes=0;
+        int bir=0;
+        int ellikrs=0;
+        int yirmibeskrs=0;
+        int onkrs=0;
+        int beskrs=0;
+        int birkrs=0;
         do{
         System.out.print("Hello ");
         for (String a : names) {
@@ -122,14 +122,14 @@ public class Assignment_20220808047{
                     if(yirmibeskrs > 0) System.out.println(yirmibeskrs + " - 0.25");
                     if(onkrs > 0) System.out.println(onkrs + " - 0.1");
                     if(beskrs > 0) System.out.println(beskrs + " - 0.05");
-                    if(birkrs > 0) System.out.println(birkrs + " - 0.01");
+                    if(birkrs > 0) System.out.println(birkrs +1+ " - 0.01");//LOOK 
 
 
                     System.out.println("You will receive the following:");
 
                     System.out.println("The current balance is: "+ balance+ "\nHave a nice day");
                 }else{
-                    System.out.println("ERROR: Invalid withdraw amount.\n\n");
+                    System.out.println("ERROR: Invalid withdrawal amount.\n\n");
                 }
                 break;
                 case 'D':
