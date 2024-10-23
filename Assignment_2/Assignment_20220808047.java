@@ -35,9 +35,9 @@ public class Assignment_20220808047{
         surname =surname.toUpperCase();
         char option;//created out of do/while cause resetting problem
         Random random = new Random();
-        double electricity = random.nextDouble(100)*+1;
-        double water = random.nextDouble(100)*+1;
-        double internet = random.nextDouble(100)*+1;
+        double electricity = Math.round((random.nextDouble() * 100) * 100.0) / 100.0;
+        double water = Math.round((random.nextDouble() * 100) * 100.0) / 100.0;
+        double internet = Math.round((random.nextDouble() * 100) * 100.0) / 100.0;
         int ikiyuz=0;
         int yuz=0;
         int elli=0;
@@ -74,65 +74,66 @@ public class Assignment_20220808047{
                 System.out.print("Please enter the amount to withdraw:");
                 withdrawAmount = opt.nextDouble();
 
-                if(withdrawAmount>=0 && withdrawAmount<=balance){
+                if (withdrawAmount >= 0 && withdrawAmount <= balance) {
                     balance -= withdrawAmount;
-            
-                    // 2 digit up
+                
+                    // 2 ondalık basamağa yuvarlayın
                     balance = Math.round(balance * 100.0) / 100.0;
                     withdrawAmount = Math.round(withdrawAmount * 100.0) / 100.0;
-            
+                
                     ikiyuz = (int) (withdrawAmount / 200);
                     withdrawAmount %= 200;
-            
+                
                     yuz = (int) (withdrawAmount / 100);
                     withdrawAmount %= 100;
-            
+                
                     elli = (int) (withdrawAmount / 50);
                     withdrawAmount %= 50;
-            
+                
                     yirmi = (int) (withdrawAmount / 20);
                     withdrawAmount %= 20;
-            
+                
                     on = (int) (withdrawAmount / 10);
                     withdrawAmount %= 10;
-            
+                
                     bes = (int) (withdrawAmount / 5);
                     withdrawAmount %= 5;
-            
+                
                     bir = (int) (withdrawAmount / 1);
                     withdrawAmount %= 1;
-            
-                    ellikrs = (int) (withdrawAmount / 0.5);
-                    withdrawAmount %= 0.5;
-            
+                
+                    // Kuruş hesaplaması burada daha dikkatli yapılmalı
+                    ellikrs = (int) (withdrawAmount / 0.50);
+                    withdrawAmount %= 0.50;
+                
                     yirmibeskrs = (int) (withdrawAmount / 0.25);
                     withdrawAmount %= 0.25;
-            
-                    onkrs = (int) (withdrawAmount / 0.1);
-                    withdrawAmount %= 0.1;
-            
+                
+                    onkrs = (int) (withdrawAmount / 0.10);
+                    withdrawAmount %= 0.10;
+                
                     beskrs = (int) (withdrawAmount / 0.05);
                     withdrawAmount %= 0.05;
-            
-                    birkrs = (int) (withdrawAmount / 0.01);
-                    withdrawAmount %= 0.01;
-                    if(ikiyuz > 0) System.out.println(ikiyuz + " - 200");
-                    if(yuz > 0) System.out.println(yuz + " - 100");
-                    if(elli > 0) System.out.println(elli + " - 50");
-                    if(yirmi > 0) System.out.println(yirmi + " - 20");
-                    if(on > 0) System.out.println(on + " - 10");
-                    if(bes > 0) System.out.println(bes + " - 5");
-                    if(bir > 0) System.out.println(bir + " - 1");
-                    if(ellikrs > 0) System.out.println(ellikrs + " - 0.5");
-                    if(yirmibeskrs > 0) System.out.println(yirmibeskrs + " - 0.25");
-                    if(onkrs > 0) System.out.println(onkrs + " - 0.1");
-                    if(beskrs > 0) System.out.println(beskrs + " - 0.05");
-                    if(birkrs > 0) System.out.println(birkrs + " - 0.01");
-
-
+                
+                    birkrs = (int) Math.round(withdrawAmount / 0.01);
+                
                     System.out.println("You will receive the following:");
-
-                    System.out.println("The current balance is: "+ balance+ "\nHave a nice day");
+                    
+                    if (ikiyuz > 0) System.out.println(ikiyuz + " - 200");
+                    if (yuz > 0) System.out.println(yuz + " - 100");
+                    if (elli > 0) System.out.println(elli + " - 50");
+                    if (yirmi > 0) System.out.println(yirmi + " - 20");
+                    if (on > 0) System.out.println(on + " - 10");
+                    if (bes > 0) System.out.println(bes + " - 5");
+                    if (bir > 0) System.out.println(bir + " - 1");
+                    if (ellikrs > 0) System.out.println(ellikrs + " - 0.5");
+                    if (yirmibeskrs > 0) System.out.println(yirmibeskrs + " - 0.25");
+                    if (onkrs > 0) System.out.println(onkrs + " - 0.1");
+                    if (beskrs > 0) System.out.println(beskrs + " - 0.05");
+                    if (birkrs > 0) System.out.println(birkrs + " - 0.01");
+                
+                    System.out.println("The current balance is: " + balance + "\nHave a nice day");
+                
                 }else{
                     System.out.println("ERROR: Invalid withdrawal amount.\n\n");
                 }
@@ -183,6 +184,7 @@ public class Assignment_20220808047{
                         }else{
                             System.out.print("Do you wish to pay this bill now (Y/N)?");
                             char billSelection = opt.next().charAt(0);
+                            billSelection=Character.toUpperCase(billSelection);
                             switch (billSelection) {
                                 case 'Y':
                                 balance -=water;
@@ -206,6 +208,7 @@ public class Assignment_20220808047{
                         }else{
                             System.out.print("Do you wish to pay this bill now (Y/N)?");
                             char billSelection = opt.next().charAt(0);
+                            billSelection= Character.toUpperCase(billSelection);
                             switch (billSelection) {
                                 case 'Y':
                                 balance -=internet;
