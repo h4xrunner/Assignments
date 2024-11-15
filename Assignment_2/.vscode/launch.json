@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "noktaligiris",
+            "request": "launch",
+            "mainClass": "noktaligiris",
+            "projectName": "Assignment_2_bcbac198"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
