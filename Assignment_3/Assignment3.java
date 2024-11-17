@@ -111,9 +111,11 @@ class Assignment3{
             
                     if(accountIndex==-1){
                         System.out.println("ERROR: Account/PIN combination not found.");
+                        bankLoginScanner.close();
                         return;
                     }if (!acctPIN[accountIndex].equals(accountPIN)) {
                         System.out.println("ERROR: Account/PIN combination not found.");
+                        bankLoginScanner.close();
                         return;
                     }else{
                         fixName(acctName[accountIndex], acctSurname[accountIndex]);
