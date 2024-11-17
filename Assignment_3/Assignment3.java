@@ -1,3 +1,6 @@
+//@author Ibrahim GUL
+//Date : 17.11.2024
+
 import java.util.Scanner;
 class Assignment3{
     private static int accountIndex;
