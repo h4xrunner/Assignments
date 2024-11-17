@@ -21,10 +21,10 @@ class Assignment3{
                     
                     static int menuDisplay(String[] items, Scanner inp ){
                         int choice;
-                        for (int i = 0; i < 4; i++) {
+                        for (int i = 0; i < items.length; i++) {
                             System.out.println(i+1 + " - " + items[i]);
                         }
-                        System.out.println(items[4]);
+                        System.out.println("0 to Quit");
                         System.out.print("Please enter your selection >> ");
                         choice = inp.next().charAt(0);
                         
@@ -34,7 +34,7 @@ class Assignment3{
                         int choice;
                         do{
                             System.out.println("\n\nHello " + names[accountIndex]+ ""+ surnames[accountIndex]+"\nWhat would you like to do today?");//space deleted cause of fixName bug
-                            choice = menuDisplay(new String[]{"Account Balance", "Deposit", "Withdrawal", "Change Name", "0 to Quit"}, inp);
+                            choice = menuDisplay(new String[]{"Account Balance", "Deposit", "Withdrawal", "Change Name"}, inp);
             
             
                             switch (choice) {
