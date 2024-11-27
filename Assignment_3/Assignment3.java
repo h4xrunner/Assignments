@@ -9,12 +9,12 @@ class Assignment3{
                     public static void main(String[] args) {
                         
                         
-                        int[] acctNumbardolma ={23445, 31693, 31313, 140804};
-                        String[] acctName={"ibrahim sad", "tunahan", "bugra alp", "GaMzE"};
-                        String[] acctSurname={"gül", "kaya", "aydin", "bIcAkCI"};
-                        String[] acctPIN={"2344", "3169", "31", "0347"};
+                        int[] acctNumber ={23445, 31693, 31313, 140804, 123};
+                        String[] acctName={"ibrahim sad", "tunahan", "bugra alp", "GaMzE", "tunahan"};
+                        String[] acctSurname={"gül", "kaya", "aydin", "bIcAkCI", "kaya"};
+                        String[] acctPIN={"2344", "3169", "31", "0347", "316931"};
                         double[] acctBal={4500, 20000, 35000, 20000};
-                        bankLogin(acctNumbardolma, acctName, acctSurname, acctPIN, acctBal);
+                        bankLogin(acctNumber, acctName, acctSurname, acctPIN, acctBal);
                         
                         
                     }
@@ -26,20 +26,23 @@ class Assignment3{
                         }
                         System.out.println("0 to Quit");
                         System.out.print("Please enter your selection >> ");
-                        choice = inp.next().charAt(0);
-                        
+                        choice = inp.nextInt();
                         return choice;
                     }
                     static void atm(String[] names, String[] surnames, double[] balances, int index, Scanner inp){
-                        int choice;
+                        char choice;
+                        int choice1;
                         do{
-                            System.out.println("\n\nHello " + names[accountIndex]+ ""+ surnames[accountIndex]+"\nWhat would you like to do today?");//space deleted cause of fixName bug
-                            choice = menuDisplay(new String[]{"Account Balance", "Deposit", "Withdrawal", "Change Name"}, inp);
+                            System.out.println("\n\nHello " + names[index]+ ""+ surnames[index]+"\nWhat would you like to do today?");//space deleted cause of fixName bug
+                            choice1 = menuDisplay(new String[]{"Account Balance", "Deposit", "Withdrawal", "Change Name"}, inp);
+                            choice = Integer.toString(choice1).charAt(0);
+
+                            
             
             
                             switch (choice) {
                                 case '1':
-                                    System.out.println("The current balance is: " + (balances[accountIndex]));
+                                    System.out.println("The current balance is: " + (balances[index]));
                                     System.out.println("Have a nice day.");
                                 break;
                                 
@@ -48,10 +51,11 @@ class Assignment3{
                                     double depositAmount = inp.nextDouble();
                                     if (!validDeposit(depositAmount)) {
                                         System.out.println("ERROR: Invalid deposit amount.");
+                                        choice='ç';
                                     } else {
-                                        balances[accountIndex] += depositAmount;
-                                        balances[accountIndex] = Math.round(balances[accountIndex] * 100.0) / 100.0;
-                                        System.out.println("The current balance is: " + (balances[accountIndex]) + "\nHave a nice day.");
+                                        balances[index] += depositAmount;
+                                        balances[index] = Math.round(balances[index] * 100.0) / 100.0;
+                                        System.out.println("The current balance is: " + (balances[index]) + "\nHave a nice day.");
                                     }
                                 break;
             
@@ -59,36 +63,44 @@ class Assignment3{
                                 System.out.print("Please enter the amount to withdraw: ");
                                 double withdrawAmount = inp.nextDouble();
             
-                                if (validWithdrawal(balances[accountIndex], withdrawAmount)) {
-                                    balances[accountIndex] -= withdrawAmount;
-                                    balances[accountIndex] = Math.round(balances[accountIndex] * 100.0) / 100.0;  
+                                if (validWithdrawal(balances[index], withdrawAmount)) {
+                                    balances[index] -= withdrawAmount;
+                                    balances[index] = Math.round(balances[index] * 100.0) / 100.0;  
                                     withdrawAmount = Math.round(withdrawAmount * 100.0) / 100.0; 
                                     
                                     System.out.println("You will receive the following:");
             
                                     System.out.println(cashGiven(withdrawAmount));
             
-                                    System.out.println("Your account balance is: " + balances[accountIndex] + "\nHave a nice day.");
+                                    System.out.println("Your account balance is: " + balances[index] + "\nHave a nice day.");
                                 } else {
                                     System.out.println("ERROR: Invalid withdrawal amount.");
+                                    choice='ç';
                                 }
                                 break;
                                 case '4':
                                 System.out.print("Please enter your name >> ");
                                 inp.nextLine();
-                                names[accountIndex]= inp.nextLine();
+                                names[index]= inp.nextLine();
                                 System.out.print("Please enter your surname >> ");
-                                surnames[accountIndex]=inp.nextLine();
-                                fixName(names[accountIndex], surnames[accountIndex]);
+                                surnames[index]=inp.nextLine();
+                                fixName(names[index], surnames[index]);
                                 break;
                                 case '0':
                                 System.out.println("Thank you for using our ATM. Have a nice day!");
                                 break;
+                                case 'ç':
+                                inValidSelectionMessage();
+                                System.exit(0);
                             
                                 default:
                                 System.out.println("Invalid selection.");
+                                choice='ç';
+                                break;
+                                
+                                
                             }
-                        }while (choice!='0');
+                        }while (choice!='0'&&choice!='ç');
                 }
                 static int findAcc(int[]acctNum, int number){
                     for (int i = 0; i < acctNum.length; i++) {
@@ -101,7 +113,7 @@ class Assignment3{
                 public static void bankLogin(int[] acctNums, String[] acctName, String[] acctSurname, String[] acctPIN, double[] acctBal){
                     names=acctName;
                     surnames= acctSurname;
-                    Scanner bankLoginScanner = new Scanner(System.in);//bu metotta oluşturulan scanner, menuDisplay hariç diger tum metotlarda kullaniliyor
+                    Scanner bankLoginScanner = new Scanner(System.in);//bu metotta oluşturulan scanner, ihtiyaç duyulan her metotta kullanılıyor. ekstra scanner açmak yasak.
                     System.out.print("Please enter your account number >> ");
                     int acctNumber = bankLoginScanner.nextInt();
                     bankLoginScanner.nextLine();//bir satır temizlendi bir string girdisi almak için
@@ -119,7 +131,7 @@ class Assignment3{
                         return;
                     }else{
                         fixName(acctName[accountIndex], acctSurname[accountIndex]);
-                        atm(acctName, acctSurname, acctBal, acctNumber, bankLoginScanner);
+                        atm(acctName, acctSurname, acctBal, accountIndex, bankLoginScanner);
                     }
                 }
                 static boolean validDeposit(double depositAmount){
@@ -206,5 +218,9 @@ class Assignment3{
                 names[accountIndex]=name;
             
     }
+                public static void inValidSelectionMessage(){
+                    System.out.println("Invalid selection. Exiting");
+                    System.exit(0);
+                }
 
 }
