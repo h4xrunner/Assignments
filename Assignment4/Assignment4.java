@@ -12,10 +12,11 @@ public class Assignment4 {
         for (int i = 0; i < numOfAccounts; i++) {
             System.out.println(acctNums[i]+" "+acctNames[i]+" "+acctSurnames[i]+" "+balances[i]);
         }
-        System.out.println(transfer(acctNums, balances, 98765, 67890, 150));
+        System.out.println(transfer(acctNums, balances, 98765, 67890, 1));
         for (int i = 0; i < numOfAccounts; i++) {
             System.out.println(acctNums[i]+" "+acctNames[i]+" "+acctSurnames[i]+" "+balances[i]);
         }
+        writeAccountInfo(acctNums, acctNames, acctSurnames, balances, "Assignment4_AccountInfoOut.txt");
 
     }///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -32,7 +33,7 @@ public class Assignment4 {
         BufferedReader infoReader = new BufferedReader(new FileReader(filename));
         int index=0;//at the end of while, integer i should increase one
         String line;//
-        String[] lineInfo = new String[countAccounts("Assignment4_AccountInfo.txt")];
+        String[] lineInfo = new String[countAccounts(filename)];
         while((line=infoReader.readLine())!=null){//readLine() her çağırıldığınde bir kez okuduğundan while içinde bile çağrılsa bir kez görevini yapmış sayılır.
             int id;
             double balance;
@@ -47,6 +48,22 @@ public class Assignment4 {
         }
         infoReader.close();
     }///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    static void writeAccountInfo(int[] acctNums, String[] names, String[] surnames, double[] balances, String filename) throws IOException{
+        BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+        
+        File accountInfoOut = new File(filename);
+        if(!accountInfoOut.exists()){
+            accountInfoOut.createNewFile();
+        }
+        
+        for (int i = 0; i < acctNums.length; i++) {
+            writer.write(acctNums[i]+" "+names[i]+" "+surnames[i]+" "+balances[i]);
+            writer.newLine();
+            
+        }         
+        writer.close();
+    }
+
     static boolean deposit(double[] balances, int index, double amount){
         if(!isDepositValid(amount)){
             return false;
@@ -64,13 +81,19 @@ public class Assignment4 {
         }
     }
 
-    static int transfer(int[] acctNums, double[] balances, int acctNumFrom, int acctNumTo, double amount){
+    static int transfer(int[] acctNums, double[] balances, int acctNumFrom, int acctNumTo, double amount)throws IOException{
+        File logCreater = new File("Assignment4.log");
+
+        if(!logCreater.exists()){
+            logCreater.createNewFile();
+        }
+
         if(findAcc(acctNums, acctNumTo)==-1){
-            return 1; 
+            return 3; 
         }else if(findAcc(acctNums, acctNumFrom)==-1){
             return 2;
         }else if (isWithdrawalValid(balances[findAcc(acctNums, acctNumFrom)], amount)==false) {
-            return 3;
+            return 1;
         }else{
             balances[findAcc(acctNums, acctNumFrom)]-=amount;
             balances[findAcc(acctNums, acctNumTo)]+=amount;
