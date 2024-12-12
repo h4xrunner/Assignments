@@ -1,5 +1,0 @@
-Transfer TR11 resulted in code 0: STX - Transfer Successful
-Transfer TR16 resulted in code 3: TNF - To Account not found
-Transfer TR20 resulted in code 2: FNF - From Account not found
-Bill Pay BP12 resulted in code 1: NSF - Insufficient Funds
-Bill Pay BP13 resulted in code 0: STX - Payment Successful

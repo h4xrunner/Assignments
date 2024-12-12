@@ -1,5 +1,4 @@
 import java.io.*;
-import java.nio.Buffer;
 public class Assignment4 {
     public static void main(String[] args) throws IOException {
         String baseFileName=args[0];
@@ -10,7 +9,6 @@ public class Assignment4 {
         double[] balances = new double[numOfAccounts];
         
 
-        
         File logCreater = new File(baseFileName+".log");
 
         if(!logCreater.exists()){
@@ -21,21 +19,15 @@ public class Assignment4 {
         if(!accountInfoOut.exists()){
             accountInfoOut.createNewFile();
         }
-
         
-
         
-        BufferedWriter logWriter = new BufferedWriter(new FileWriter(baseFileName+".log"));
-          
+        BufferedWriter logWriter = new BufferedWriter(new FileWriter(baseFileName+".log"));//can use while save any process to log file
         readAccountInfo(acctNums, acctNames, acctSurnames, balances, baseFileName+"_AccountInfo.txt");
-        for (int i = 0; i < numOfAccounts; i++) {
-            System.out.println(acctNums[i]+" "+acctNames[i]+" "+acctSurnames[i]+" "+balances[i]);
-        }
-        System.out.println(transfer(acctNums, balances, 98765, 67890, 1));
-        for (int i = 0; i < numOfAccounts; i++) {
-            System.out.println(acctNums[i]+" "+acctNames[i]+" "+acctSurnames[i]+" "+balances[i]);
-        }
+        processTransferInfo(acctNums, balances, baseFileName+"_TransferInfo.txt", logWriter);
+        processBillPayInfo(acctNums, balances, baseFileName+"_BillPay.txt", logWriter);
         writeAccountInfo(acctNums, acctNames, acctSurnames, balances, baseFileName+"_AccountInfoOut.txt");
+        logWriter.close();
+        
 
     }///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -125,14 +117,13 @@ public class Assignment4 {
             String[] parts = line.split(" ");
             String billPayNum = parts[0];
             int acctNumFrom = Integer.parseInt(parts[1]);
-            String billType = parts[2];
-            double amount = Double.parseDouble(parts[3]);
+            double amount = Double.parseDouble(parts[3]);//bill type and customer id ignored
 
             int index = findAcc(acctNums, acctNumFrom);
             if (index == -1 || !withdrawal(balances, index, amount)) {
-                logWriter.write("Bill Pay " + billPayNum + " (" + billType + ") failed: NSF - Insufficient Funds");
+                logWriter.write("Bill Pay " + billPayNum + " resulted in code 1: NSF - Insufficient Funds");
             } else {
-                logWriter.write("Bill Pay " + billPayNum + " (" + billType + ") successful.");
+                logWriter.write("Bill Pay " + billPayNum + " resulted in code 0: STX - Payment successful.");
             }
             logWriter.newLine();
         }
@@ -140,21 +131,21 @@ public class Assignment4 {
     }
     static void processTransferInfo(int[] acctNums, double[] balances, String filename, BufferedWriter logWriter) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filename));
-        String line;
+        String line="";
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split(" ");
             String transferNum = parts[0];
             int acctNumFrom = Integer.parseInt(parts[1]);
             int acctNumTo = Integer.parseInt(parts[2]);
             double amount = Double.parseDouble(parts[3]);
-
+            
             int result = transfer(acctNums, balances, acctNumFrom, acctNumTo, amount);
-            logWriter.write("Transfer " + transferNum + " resulted in code " + result + ": " + getResultDescription(result));
+            logWriter.write("Transfer " + transferNum + " resulted in code " + result + ": " + getResultTransfer(result));
             logWriter.newLine();
         }
         reader.close();
     }
-    static String getResultDescription(int result) {
+    static String getResultTransfer(int result) {
         switch (result) {
             case 0:
                 return "STX - Transfer Successful";
