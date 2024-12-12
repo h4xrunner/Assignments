@@ -1,14 +1,20 @@
 import java.io.*;
 public class Assignment4 {
     public static void main(String[] args) throws IOException {
-        int numOfAccounts= countAccounts("Assignment4_AccountInfo.txt");
+        String baseFileName=args[0];
+        int numOfAccounts= countAccounts(baseFileName+"_AccountInfo.txt");
         int[] acctNums = new int[numOfAccounts];
         String[] acctNames = new String[numOfAccounts];
         String[] acctSurnames = new String[numOfAccounts];
         double[] balances = new double[numOfAccounts];
+        File logCreater = new File(baseFileName+".log");
+
+        if(!logCreater.exists()){
+            logCreater.createNewFile();
+        }
         
           
-        readAccountInfo(acctNums, acctNames, acctSurnames, balances, "Assignment4_AccountInfo.txt");
+        readAccountInfo(acctNums, acctNames, acctSurnames, balances, baseFileName+"_AccountInfo.txt");
         for (int i = 0; i < numOfAccounts; i++) {
             System.out.println(acctNums[i]+" "+acctNames[i]+" "+acctSurnames[i]+" "+balances[i]);
         }
@@ -16,7 +22,7 @@ public class Assignment4 {
         for (int i = 0; i < numOfAccounts; i++) {
             System.out.println(acctNums[i]+" "+acctNames[i]+" "+acctSurnames[i]+" "+balances[i]);
         }
-        writeAccountInfo(acctNums, acctNames, acctSurnames, balances, "Assignment4_AccountInfoOut.txt");
+        writeAccountInfo(acctNums, acctNames, acctSurnames, balances, baseFileName+"_AccountInfoOut.txt");
 
     }///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -82,11 +88,7 @@ public class Assignment4 {
     }
 
     static int transfer(int[] acctNums, double[] balances, int acctNumFrom, int acctNumTo, double amount)throws IOException{
-        File logCreater = new File("Assignment4.log");
-
-        if(!logCreater.exists()){
-            logCreater.createNewFile();
-        }
+        
 
         if(findAcc(acctNums, acctNumTo)==-1){
             return 3; 
