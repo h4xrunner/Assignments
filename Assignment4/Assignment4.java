@@ -113,6 +113,61 @@ public class Assignment4 {
         
         
     }
+    static void processBillPayInfo(int[] acctNums, double[] balances, String filename, BufferedWriter logWriter) throws IOException {
+        File file = new File(filename);
+        if (!file.exists()) {
+            return; // Skip if no bill payment file
+        }
+
+        BufferedReader reader = new BufferedReader(new FileReader(filename));
+        String line="";
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split(" ");
+            String billPayNum = parts[0];
+            int acctNumFrom = Integer.parseInt(parts[1]);
+            String billType = parts[2];
+            double amount = Double.parseDouble(parts[3]);
+
+            int index = findAcc(acctNums, acctNumFrom);
+            if (index == -1 || !withdrawal(balances, index, amount)) {
+                logWriter.write("Bill Pay " + billPayNum + " (" + billType + ") failed: NSF - Insufficient Funds");
+            } else {
+                logWriter.write("Bill Pay " + billPayNum + " (" + billType + ") successful.");
+            }
+            logWriter.newLine();
+        }
+        reader.close();
+    }
+    static void processTransferInfo(int[] acctNums, double[] balances, String filename, BufferedWriter logWriter) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(filename));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split(" ");
+            String transferNum = parts[0];
+            int acctNumFrom = Integer.parseInt(parts[1]);
+            int acctNumTo = Integer.parseInt(parts[2]);
+            double amount = Double.parseDouble(parts[3]);
+
+            int result = transfer(acctNums, balances, acctNumFrom, acctNumTo, amount);
+            logWriter.write("Transfer " + transferNum + " resulted in code " + result + ": " + getResultDescription(result));
+            logWriter.newLine();
+        }
+        reader.close();
+    }
+    static String getResultDescription(int result) {
+        switch (result) {
+            case 0:
+                return "STX - Transfer Successful";
+            case 1:
+                return "NSF - Insufficient Funds";
+            case 2:
+                return "FNF - From Account not found";
+            case 3:
+                return "TNF - To Account not found";
+            default:
+                return "UNK - Unknown Error";
+        }
+    }
 
 
 
