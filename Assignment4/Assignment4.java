@@ -1,4 +1,5 @@
 import java.io.*;
+import java.nio.Buffer;
 public class Assignment4 {
     public static void main(String[] args) throws IOException {
         String baseFileName=args[0];
@@ -7,12 +8,24 @@ public class Assignment4 {
         String[] acctNames = new String[numOfAccounts];
         String[] acctSurnames = new String[numOfAccounts];
         double[] balances = new double[numOfAccounts];
+        
+
+        
         File logCreater = new File(baseFileName+".log");
 
         if(!logCreater.exists()){
             logCreater.createNewFile();
         }
+
+        File accountInfoOut = new File(baseFileName+"_AccountInfoOut.txt");
+        if(!accountInfoOut.exists()){
+            accountInfoOut.createNewFile();
+        }
+
         
+
+        
+        BufferedWriter logWriter = new BufferedWriter(new FileWriter(baseFileName+".log"));
           
         readAccountInfo(acctNums, acctNames, acctSurnames, balances, baseFileName+"_AccountInfo.txt");
         for (int i = 0; i < numOfAccounts; i++) {
@@ -34,7 +47,7 @@ public class Assignment4 {
         }
         reader.close();
         return accountCount;
-    }//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    }
     static void readAccountInfo(int[] acctNums, String[] names, String[] surnames, double[] balances, String filename) throws IOException{
         BufferedReader infoReader = new BufferedReader(new FileReader(filename));
         int index=0;//at the end of while, integer i should increase one
@@ -57,10 +70,6 @@ public class Assignment4 {
     static void writeAccountInfo(int[] acctNums, String[] names, String[] surnames, double[] balances, String filename) throws IOException{
         BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
         
-        File accountInfoOut = new File(filename);
-        if(!accountInfoOut.exists()){
-            accountInfoOut.createNewFile();
-        }
         
         for (int i = 0; i < acctNums.length; i++) {
             writer.write(acctNums[i]+" "+names[i]+" "+surnames[i]+" "+balances[i]);
