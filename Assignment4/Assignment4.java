@@ -8,7 +8,11 @@ public class Assignment4 {
         String[] acctSurnames = new String[numOfAccounts];
         double[] balances = new double[numOfAccounts];
         
+        billAndTransferMethod(acctNums, acctNames, acctSurnames, balances, baseFileName);
+        fileCreator(baseFileName);
 
+    }///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    static void fileCreator(String baseFileName) throws IOException{
         File logCreater = new File(baseFileName+".log");
 
         if(!logCreater.exists()){
@@ -19,18 +23,7 @@ public class Assignment4 {
         if(!accountInfoOut.exists()){
             accountInfoOut.createNewFile();
         }
-        
-        
-        BufferedWriter logWriter = new BufferedWriter(new FileWriter(baseFileName+".log"));//can use while save any process to log file
-        readAccountInfo(acctNums, acctNames, acctSurnames, balances, baseFileName+"_AccountInfo.txt");
-        processTransferInfo(acctNums, balances, baseFileName+"_TransferInfo.txt", logWriter);
-        processBillPayInfo(acctNums, balances, baseFileName+"_BillPay.txt", logWriter);
-        writeAccountInfo(acctNums, acctNames, acctSurnames, balances, baseFileName+"_AccountInfoOut.txt");
-        logWriter.close();
-        
-
-    }///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    }
     static int countAccounts(String filename)throws IOException{
         int accountCount=0;
         BufferedReader reader = new BufferedReader(new FileReader(filename));
@@ -158,6 +151,14 @@ public class Assignment4 {
             default:
                 return "UNK - Unknown Error";
         }
+    }
+    static void billAndTransferMethod(int[] acctNums, String[] acctNames, String[] acctSurnames, double[] balances, String baseFileName) throws IOException{
+        BufferedWriter logWriter = new BufferedWriter(new FileWriter(baseFileName+".log"));//can use while save any process to log file
+        readAccountInfo(acctNums, acctNames, acctSurnames, balances, baseFileName+"_AccountInfo.txt");
+        processTransferInfo(acctNums, balances, baseFileName+"_TransferInfo.txt", logWriter);
+        processBillPayInfo(acctNums, balances, baseFileName+"_BillPay.txt", logWriter);
+        writeAccountInfo(acctNums, acctNames, acctSurnames, balances, baseFileName+"_AccountInfoOut.txt");
+        logWriter.close();
     }
 
 
